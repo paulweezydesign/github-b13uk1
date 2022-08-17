@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Fragment, useState } from 'react';
 import {
   Routes,
   Route,
@@ -115,14 +116,15 @@ function Gallery() {
   let location = useLocation();
 
   return (
-    <div style={{ padding: '0 24px' }}>
+    <div className='container mx-auto max-w-8xl h-screen ' style={{ padding: '0 24px' }}>
       <h2>Gallery</h2>
       <div
+      className='gap-x-12 gap-y-12'
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '24px',
-          maxWidth: '1000px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+         
+         
           justifyContent: 'center',
           alignItems: 'center',
         }}
@@ -137,8 +139,9 @@ function Gallery() {
             state={{ backgroundLocation: location }}
           >
             <img
-              width={200}
-              height={350}
+            className='shadow-md shadow-black/50 hover:scale-110'
+              width={300}
+              height={450}
               style={{
                 width: '100%',
                 aspectRatio: '1 / 1.5',
@@ -194,25 +197,24 @@ function Modal() {
           padding: '8px 8px',
         }}
       >
-        <h1 id="label" style={{ margin: 0 }}>
-          {image.title}
-        </h1>
+     
         <img
           style={{
-            margin: '16px 0',
+          
             borderRadius: '8px',
             width: '100%',
             height: 'auto',
           }}
-          width={400}
+         className=""
           height={400}
           src={image.src}
           alt=""
         />
+           <h1 className='text-4xl font-bold text-center' id="label" style={{ margin: 0 }}>
+          {image.title}
+        </h1>
         <p
-          style={{
-            fontSize: '24px',
-          }}
+        className='prose lg:prose-xl'
         >
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
           temporibus aperiam error sint accusamus voluptas. Quasi magnam
@@ -222,6 +224,7 @@ function Modal() {
           illum aliquam neque quas praesentium cum.
         </p>
         <button
+          className='bg-black text-white text-lg tracking-wide py-2'
           style={{ display: 'block' }}
           ref={buttonRef}
           onClick={onDismiss}
