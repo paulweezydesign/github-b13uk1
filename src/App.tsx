@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Routes,
   Route,
@@ -7,11 +7,11 @@ import {
   useLocation,
   useNavigate,
   useParams,
-} from "react-router-dom";
-import { Dialog } from "@reach/dialog";
-import "@reach/dialog/styles.css";
+} from 'react-router-dom';
+import { Dialog } from '@reach/dialog';
+import '@reach/dialog/styles.css';
 
-import { IMAGES, getImageById } from "./images";
+import { IMAGES, getImageById } from './images';
 
 export default function App() {
   let location = useLocation();
@@ -115,13 +115,16 @@ function Gallery() {
   let location = useLocation();
 
   return (
-    <div style={{ padding: "0 24px" }}>
+    <div style={{ padding: '0 24px' }}>
       <h2>Gallery</h2>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "24px",
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '24px',
+          maxWidth: '1000px',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         {IMAGES.map((image) => (
@@ -135,12 +138,12 @@ function Gallery() {
           >
             <img
               width={200}
-              height={200}
+              height={350}
               style={{
-                width: "100%",
-                aspectRatio: "1 / 1",
-                height: "auto",
-                borderRadius: "8px",
+                width: '100%',
+                aspectRatio: '1 / 1.5',
+                height: 'auto',
+                borderRadius: '8px',
               }}
               src={image.src}
               alt={image.title}
@@ -153,7 +156,7 @@ function Gallery() {
 }
 
 function ImageView() {
-  let { id } = useParams<"id">();
+  let { id } = useParams<'id'>();
   let image = getImageById(Number(id));
 
   if (!image) return <div>Image not found</div>;
@@ -161,14 +164,14 @@ function ImageView() {
   return (
     <div>
       <h1>{image.title}</h1>
-      <img width={400} height={400} src={image.src} alt="" />
+      <img width={800} height={600} src={image.src} alt="" />
     </div>
   );
 }
 
 function Modal() {
   let navigate = useNavigate();
-  let { id } = useParams<"id">();
+  let { id } = useParams<'id'>();
   let image = getImageById(Number(id));
   let buttonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -186,9 +189,9 @@ function Modal() {
     >
       <div
         style={{
-          display: "grid",
-          justifyContent: "center",
-          padding: "8px 8px",
+          display: 'grid',
+          justifyContent: 'center',
+          padding: '8px 8px',
         }}
       >
         <h1 id="label" style={{ margin: 0 }}>
@@ -196,18 +199,30 @@ function Modal() {
         </h1>
         <img
           style={{
-            margin: "16px 0",
-            borderRadius: "8px",
-            width: "100%",
-            height: "auto",
+            margin: '16px 0',
+            borderRadius: '8px',
+            width: '100%',
+            height: 'auto',
           }}
           width={400}
           height={400}
           src={image.src}
           alt=""
         />
+        <p
+          style={{
+            fontSize: '24px',
+          }}
+        >
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
+          temporibus aperiam error sint accusamus voluptas. Quasi magnam
+          eligendi aliquam animi repellendus nobis totam illum accusantium
+          quisquam facilis. Nemo iure consectetur hic, consequuntur explicabo
+          ullam quia itaque. Dolore magnam quia nostrum ad, iste nemo adipisci
+          illum aliquam neque quas praesentium cum.
+        </p>
         <button
-          style={{ display: "block" }}
+          style={{ display: 'block' }}
           ref={buttonRef}
           onClick={onDismiss}
         >
